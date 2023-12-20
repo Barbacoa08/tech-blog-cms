@@ -5,7 +5,10 @@
   "main": "dist/server.js",
   "license": "MIT",
   "scripts": {
+    "all": "yarn && yarn clean && yarn generate:types && yarn build && yarn generate:graphQLSchema",
     "dev": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts nodemon",
+    "start": "yarn dev",
+    "clean": "rm -rf dist build src/payload-types.ts src/generated-schema.graphql",
     "build:payload": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload build",
     "build:server": "tsc",
     "build": "yarn copyfiles && yarn build:payload && yarn build:server",

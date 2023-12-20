@@ -8,14 +8,52 @@
 
 export interface Config {
   collections: {
+    icon: Icon;
+    posts: Post;
+    techposts: Techpost;
+    tags: Tag;
+    topics: Topic;
     users: User;
+    program: Program;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
   globals: {};
 }
+export interface Icon {
+  id: string;
+  name: string;
+  value: string;
+}
+export interface Post {
+  id: string;
+  title: string;
+  slug?: string;
+  author?: string | User;
+  publishedDate?: string;
+  tags?: string[] | Tag[];
+  content: {
+    [k: string]: unknown;
+  }[];
+  accordions?: {
+    accordionheader: string;
+    accordionItems?: {
+      accordionitemheader?: string;
+      accordionitemcontent: {
+        [k: string]: unknown;
+      }[];
+      id?: string;
+    }[];
+    id?: string;
+  }[];
+  status: 'draft' | 'published';
+  updatedAt: string;
+  createdAt: string;
+}
 export interface User {
   id: string;
+  name: string;
+  roles?: ('admin' | 'editor')[];
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -26,6 +64,82 @@ export interface User {
   loginAttempts?: number;
   lockUntil?: string;
   password?: string;
+}
+export interface Tag {
+  id: string;
+  name: string;
+}
+export interface Techpost {
+  id: string;
+  title: string;
+  slug?: string;
+  author?: string | User;
+  publishedDate?: string;
+  tags?: string[] | Tag[];
+  content: {
+    [k: string]: unknown;
+  }[];
+  accordions?: {
+    accordionheader: string;
+    accordionItems?: {
+      accordionitemheader?: string;
+      accordionitemcontent: {
+        [k: string]: unknown;
+      }[];
+      id?: string;
+    }[];
+    id?: string;
+  }[];
+  status: 'draft' | 'published';
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Topic {
+  id: string;
+  title: string;
+  slug?: string;
+  icon?: string | Icon;
+  tags: string[] | Tag[];
+  content: {
+    [k: string]: unknown;
+  }[];
+  accordions?: {
+    accordionheader: string;
+    accordionItems?: {
+      accordionitemheader?: string;
+      accordionitemcontent: {
+        [k: string]: unknown;
+      }[];
+      id?: string;
+    }[];
+    id?: string;
+  }[];
+  status: 'draft' | 'published';
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Program {
+  id: string;
+  slug?: string;
+  title: string;
+  passcode: string;
+  content?: {
+    [k: string]: unknown;
+  }[];
+  accordions?: {
+    accordionheader: string;
+    accordionItems?: {
+      accordionitemheader?: string;
+      accordionitemcontent: {
+        [k: string]: unknown;
+      }[];
+      id?: string;
+    }[];
+    id?: string;
+  }[];
+  status: 'draft' | 'published';
+  updatedAt: string;
+  createdAt: string;
 }
 export interface PayloadPreference {
   id: string;
@@ -58,7 +172,13 @@ export interface PayloadMigration {
 declare module 'payload' {
   export interface GeneratedTypes {
     collections: {
+      'icon': Icon
+      'posts': Post
+      'techposts': Techpost
+      'tags': Tag
+      'topics': Topic
       'users': User
+      'program': Program
       'payload-preferences': PayloadPreference
       'payload-migrations': PayloadMigration
     }
