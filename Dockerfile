@@ -1,4 +1,4 @@
-FROM node:18.8-alpine as base
+FROM node:21.5.0-alpine as base
 
 FROM base as builder
 
@@ -7,7 +7,7 @@ COPY package*.json ./
 
 COPY . .
 RUN yarn install
-RUN yarn build
+RUN yarn all
 
 FROM base as runtime
 
