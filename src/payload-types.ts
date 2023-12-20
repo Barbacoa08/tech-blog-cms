@@ -28,24 +28,28 @@ export interface Icon {
 export interface Post {
   id: string;
   title: string;
-  slug?: string;
-  author?: string | User;
-  publishedDate?: string;
-  tags?: string[] | Tag[];
+  slug?: string | null;
+  author?: (string | null) | User;
+  publishedDate?: string | null;
+  tags?: (string | Tag)[] | null;
   content: {
     [k: string]: unknown;
   }[];
-  accordions?: {
-    accordionheader: string;
-    accordionItems?: {
-      accordionitemheader?: string;
-      accordionitemcontent: {
-        [k: string]: unknown;
-      }[];
-      id?: string;
-    }[];
-    id?: string;
-  }[];
+  accordions?:
+    | {
+        accordionheader: string;
+        accordionItems?:
+          | {
+              accordionitemheader?: string | null;
+              accordionitemcontent: {
+                [k: string]: unknown;
+              }[];
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
   status: 'draft' | 'published';
   updatedAt: string;
   createdAt: string;
@@ -53,17 +57,17 @@ export interface Post {
 export interface User {
   id: string;
   name: string;
-  roles?: ('admin' | 'editor')[];
+  roles?: ('admin' | 'editor')[] | null;
   updatedAt: string;
   createdAt: string;
   email: string;
-  resetPasswordToken?: string;
-  resetPasswordExpiration?: string;
-  salt?: string;
-  hash?: string;
-  loginAttempts?: number;
-  lockUntil?: string;
-  password?: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  password: string | null;
 }
 export interface Tag {
   id: string;
@@ -72,24 +76,28 @@ export interface Tag {
 export interface TechPost {
   id: string;
   title: string;
-  slug?: string;
-  author?: string | User;
-  publishedDate?: string;
-  tags?: string[] | Tag[];
+  slug?: string | null;
+  author?: (string | null) | User;
+  publishedDate?: string | null;
+  tags?: (string | Tag)[] | null;
   content: {
     [k: string]: unknown;
   }[];
-  accordions?: {
-    accordionheader: string;
-    accordionItems?: {
-      accordionitemheader?: string;
-      accordionitemcontent: {
-        [k: string]: unknown;
-      }[];
-      id?: string;
-    }[];
-    id?: string;
-  }[];
+  accordions?:
+    | {
+        accordionheader: string;
+        accordionItems?:
+          | {
+              accordionitemheader?: string | null;
+              accordionitemcontent: {
+                [k: string]: unknown;
+              }[];
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
   status: 'draft' | 'published';
   updatedAt: string;
   createdAt: string;
@@ -97,46 +105,56 @@ export interface TechPost {
 export interface Topic {
   id: string;
   title: string;
-  slug?: string;
-  icon?: string | Icon;
-  tags: string[] | Tag[];
+  slug?: string | null;
+  icon?: (string | null) | Icon;
+  tags: (string | Tag)[];
   content: {
     [k: string]: unknown;
   }[];
-  accordions?: {
-    accordionheader: string;
-    accordionItems?: {
-      accordionitemheader?: string;
-      accordionitemcontent: {
-        [k: string]: unknown;
-      }[];
-      id?: string;
-    }[];
-    id?: string;
-  }[];
+  accordions?:
+    | {
+        accordionheader: string;
+        accordionItems?:
+          | {
+              accordionitemheader?: string | null;
+              accordionitemcontent: {
+                [k: string]: unknown;
+              }[];
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
   status: 'draft' | 'published';
   updatedAt: string;
   createdAt: string;
 }
 export interface Program {
   id: string;
-  slug?: string;
+  slug?: string | null;
   title: string;
   passcode: string;
-  content?: {
-    [k: string]: unknown;
-  }[];
-  accordions?: {
-    accordionheader: string;
-    accordionItems?: {
-      accordionitemheader?: string;
-      accordionitemcontent: {
+  content?:
+    | {
         [k: string]: unknown;
-      }[];
-      id?: string;
-    }[];
-    id?: string;
-  }[];
+      }[]
+    | null;
+  accordions?:
+    | {
+        accordionheader: string;
+        accordionItems?:
+          | {
+              accordionitemheader?: string | null;
+              accordionitemcontent: {
+                [k: string]: unknown;
+              }[];
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
   status: 'draft' | 'published';
   updatedAt: string;
   createdAt: string;
@@ -147,7 +165,7 @@ export interface PayloadPreference {
     relationTo: 'users';
     value: string | User;
   };
-  key?: string;
+  key?: string | null;
   value?:
     | {
         [k: string]: unknown;
@@ -162,26 +180,13 @@ export interface PayloadPreference {
 }
 export interface PayloadMigration {
   id: string;
-  name?: string;
-  batch?: number;
+  name?: string | null;
+  batch?: number | null;
   updatedAt: string;
   createdAt: string;
 }
 
 
 declare module 'payload' {
-  export interface GeneratedTypes {
-    collections: {
-      'icon': Icon
-      'posts': Post
-      'tech-posts': TechPost
-      'tags': Tag
-      'topics': Topic
-      'users': User
-      'program': Program
-      'payload-preferences': PayloadPreference
-      'payload-migrations': PayloadMigration
-    }
-
-  }
+  export interface GeneratedTypes extends Config {}
 }

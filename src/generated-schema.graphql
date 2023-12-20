@@ -91,12 +91,16 @@ input Icon_where_and {
   name: Icon_name_operator
   value: Icon_value_operator
   id: Icon_id_operator
+  AND: [Icon_where_and]
+  OR: [Icon_where_or]
 }
 
 input Icon_where_or {
   name: Icon_name_operator
   value: Icon_value_operator
   id: Icon_id_operator
+  AND: [Icon_where_and]
+  OR: [Icon_where_or]
 }
 
 type iconDocAccess {
@@ -458,6 +462,8 @@ input Post_where_and {
   updatedAt: Post_updatedAt_operator
   createdAt: Post_createdAt_operator
   id: Post_id_operator
+  AND: [Post_where_and]
+  OR: [Post_where_or]
 }
 
 input Post_where_or {
@@ -476,6 +482,8 @@ input Post_where_or {
   updatedAt: Post_updatedAt_operator
   createdAt: Post_createdAt_operator
   id: Post_id_operator
+  AND: [Post_where_and]
+  OR: [Post_where_or]
 }
 
 type postsDocAccess {
@@ -1135,6 +1143,8 @@ input TechPost_where_and {
   updatedAt: TechPost_updatedAt_operator
   createdAt: TechPost_createdAt_operator
   id: TechPost_id_operator
+  AND: [TechPost_where_and]
+  OR: [TechPost_where_or]
 }
 
 input TechPost_where_or {
@@ -1153,6 +1163,8 @@ input TechPost_where_or {
   updatedAt: TechPost_updatedAt_operator
   createdAt: TechPost_createdAt_operator
   id: TechPost_id_operator
+  AND: [TechPost_where_and]
+  OR: [TechPost_where_or]
 }
 
 type tech_postsDocAccess {
@@ -1623,11 +1635,15 @@ input Tag_id_operator {
 input Tag_where_and {
   name: Tag_name_operator
   id: Tag_id_operator
+  AND: [Tag_where_and]
+  OR: [Tag_where_or]
 }
 
 input Tag_where_or {
   name: Tag_name_operator
   id: Tag_id_operator
+  AND: [Tag_where_and]
+  OR: [Tag_where_or]
 }
 
 type tagsDocAccess {
@@ -1904,6 +1920,8 @@ input Topic_where_and {
   updatedAt: Topic_updatedAt_operator
   createdAt: Topic_createdAt_operator
   id: Topic_id_operator
+  AND: [Topic_where_and]
+  OR: [Topic_where_or]
 }
 
 input Topic_where_or {
@@ -1921,6 +1939,8 @@ input Topic_where_or {
   updatedAt: Topic_updatedAt_operator
   createdAt: Topic_createdAt_operator
   id: Topic_id_operator
+  AND: [Topic_where_and]
+  OR: [Topic_where_or]
 }
 
 type topicsDocAccess {
@@ -2421,6 +2441,8 @@ input User_where_and {
   createdAt: User_createdAt_operator
   email: User_email_operator
   id: User_id_operator
+  AND: [User_where_and]
+  OR: [User_where_or]
 }
 
 input User_where_or {
@@ -2430,6 +2452,8 @@ input User_where_or {
   createdAt: User_createdAt_operator
   email: User_email_operator
   id: User_id_operator
+  AND: [User_where_and]
+  OR: [User_where_or]
 }
 
 type usersDocAccess {
@@ -2830,6 +2854,8 @@ input Program_where_and {
   updatedAt: Program_updatedAt_operator
   createdAt: Program_createdAt_operator
   id: Program_id_operator
+  AND: [Program_where_and]
+  OR: [Program_where_or]
 }
 
 input Program_where_or {
@@ -2846,6 +2872,8 @@ input Program_where_or {
   updatedAt: Program_updatedAt_operator
   createdAt: Program_createdAt_operator
   id: Program_id_operator
+  AND: [Program_where_and]
+  OR: [Program_where_or]
 }
 
 type programDocAccess {
@@ -3338,6 +3366,8 @@ input PayloadPreference_where_and {
   updatedAt: PayloadPreference_updatedAt_operator
   createdAt: PayloadPreference_createdAt_operator
   id: PayloadPreference_id_operator
+  AND: [PayloadPreference_where_and]
+  OR: [PayloadPreference_where_or]
 }
 
 input PayloadPreference_where_or {
@@ -3347,6 +3377,8 @@ input PayloadPreference_where_or {
   updatedAt: PayloadPreference_updatedAt_operator
   createdAt: PayloadPreference_createdAt_operator
   id: PayloadPreference_id_operator
+  AND: [PayloadPreference_where_and]
+  OR: [PayloadPreference_where_or]
 }
 
 type payload_preferencesDocAccess {
