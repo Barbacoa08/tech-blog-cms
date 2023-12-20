@@ -1,0 +1,12 @@
+name: CI (lint+build+tests)
+on: [push]
+jobs:
+  build:
+    name: run `yarn all`
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+      - run: (yarn all && echo "all checks have passed") || (echo "barbajoe CMS has fainted!"; exit 1)
