@@ -5,7 +5,7 @@ import { accordionField } from "../fields/accordions";
 import { slugField } from "../fields/slug";
 
 export const TechPosts: CollectionConfig = {
-  slug: "techposts",
+  slug: "tech-posts",
   admin: {
     defaultColumns: ["title", "author", "tags", "status"],
     useAsTitle: "title",

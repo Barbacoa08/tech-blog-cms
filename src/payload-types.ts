@@ -10,7 +10,7 @@ export interface Config {
   collections: {
     icon: Icon;
     posts: Post;
-    techposts: Techpost;
+    'tech-posts': TechPost;
     tags: Tag;
     topics: Topic;
     users: User;
@@ -69,7 +69,7 @@ export interface Tag {
   id: string;
   name: string;
 }
-export interface Techpost {
+export interface TechPost {
   id: string;
   title: string;
   slug?: string;
@@ -174,7 +174,7 @@ declare module 'payload' {
     collections: {
       'icon': Icon
       'posts': Post
-      'techposts': Techpost
+      'tech-posts': TechPost
       'tags': Tag
       'topics': Topic
       'users': User

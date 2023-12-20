@@ -5,9 +5,9 @@ type Query {
   Post(id: String!, draft: Boolean): Post
   Posts(draft: Boolean, where: Post_where, limit: Int, page: Int, sort: String): Posts
   docAccessPost(id: String!): postsDocAccess
-  Techpost(id: String!, draft: Boolean): Techpost
-  Techposts(draft: Boolean, where: Techpost_where, limit: Int, page: Int, sort: String): Techposts
-  docAccessTechpost(id: String!): techpostsDocAccess
+  TechPost(id: String!, draft: Boolean): TechPost
+  TechPosts(draft: Boolean, where: TechPost_where, limit: Int, page: Int, sort: String): TechPosts
+  docAccessTechPost(id: String!): tech_postsDocAccess
   Tag(id: String!, draft: Boolean): Tag
   Tags(draft: Boolean, where: Tag_where, limit: Int, page: Int, sort: String): Tags
   docAccessTag(id: String!): tagsDocAccess
@@ -901,7 +901,7 @@ type PostsDeleteDocAccess {
   where: JSONObject
 }
 
-type Techpost {
+type TechPost {
   id: String
   title: String!
   slug: String
@@ -909,31 +909,31 @@ type Techpost {
   publishedDate: DateTime
   tags: [Tag!]
   content(depth: Int): JSON!
-  accordions: [Techpost_Accordions!]
-  status: Techpost_status!
+  accordions: [TechPost_Accordions!]
+  status: TechPost_status!
   updatedAt: DateTime
   createdAt: DateTime
 }
 
-type Techpost_Accordions {
+type TechPost_Accordions {
   accordionheader: String
-  accordionItems: [Techpost_Accordions_AccordionItems!]
+  accordionItems: [TechPost_Accordions_AccordionItems!]
   id: String
 }
 
-type Techpost_Accordions_AccordionItems {
+type TechPost_Accordions_AccordionItems {
   accordionitemheader: String
   accordionitemcontent(depth: Int): JSON
   id: String
 }
 
-enum Techpost_status {
+enum TechPost_status {
   draft
   published
 }
 
-type Techposts {
-  docs: [Techpost]
+type TechPosts {
+  docs: [TechPost]
   hasNextPage: Boolean
   hasPrevPage: Boolean
   limit: Int
@@ -946,27 +946,27 @@ type Techposts {
   totalPages: Int
 }
 
-input Techpost_where {
-  title: Techpost_title_operator
-  slug: Techpost_slug_operator
-  author: Techpost_author_operator
-  publishedDate: Techpost_publishedDate_operator
-  tags: Techpost_tags_operator
-  content: Techpost_content_operator
-  accordions__accordionheader: Techpost_accordions__accordionheader_operator
-  accordions__accordionItems__accordionitemheader: Techpost_accordions__accordionItems__accordionitemheader_operator
-  accordions__accordionItems__accordionitemcontent: Techpost_accordions__accordionItems__accordionitemcontent_operator
-  accordions__accordionItems__id: Techpost_accordions__accordionItems__id_operator
-  accordions__id: Techpost_accordions__id_operator
-  status: Techpost_status_operator
-  updatedAt: Techpost_updatedAt_operator
-  createdAt: Techpost_createdAt_operator
-  id: Techpost_id_operator
-  AND: [Techpost_where_and]
-  OR: [Techpost_where_or]
+input TechPost_where {
+  title: TechPost_title_operator
+  slug: TechPost_slug_operator
+  author: TechPost_author_operator
+  publishedDate: TechPost_publishedDate_operator
+  tags: TechPost_tags_operator
+  content: TechPost_content_operator
+  accordions__accordionheader: TechPost_accordions__accordionheader_operator
+  accordions__accordionItems__accordionitemheader: TechPost_accordions__accordionItems__accordionitemheader_operator
+  accordions__accordionItems__accordionitemcontent: TechPost_accordions__accordionItems__accordionitemcontent_operator
+  accordions__accordionItems__id: TechPost_accordions__accordionItems__id_operator
+  accordions__id: TechPost_accordions__id_operator
+  status: TechPost_status_operator
+  updatedAt: TechPost_updatedAt_operator
+  createdAt: TechPost_createdAt_operator
+  id: TechPost_id_operator
+  AND: [TechPost_where_and]
+  OR: [TechPost_where_or]
 }
 
-input Techpost_title_operator {
+input TechPost_title_operator {
   equals: String
   not_equals: String
   like: String
@@ -976,7 +976,7 @@ input Techpost_title_operator {
   all: [String]
 }
 
-input Techpost_slug_operator {
+input TechPost_slug_operator {
   equals: String
   not_equals: String
   like: String
@@ -987,7 +987,7 @@ input Techpost_slug_operator {
   exists: Boolean
 }
 
-input Techpost_author_operator {
+input TechPost_author_operator {
   equals: JSON
   not_equals: JSON
   in: [JSON]
@@ -996,7 +996,7 @@ input Techpost_author_operator {
   exists: Boolean
 }
 
-input Techpost_publishedDate_operator {
+input TechPost_publishedDate_operator {
   equals: DateTime
   not_equals: DateTime
   greater_than_equal: DateTime
@@ -1007,7 +1007,7 @@ input Techpost_publishedDate_operator {
   exists: Boolean
 }
 
-input Techpost_tags_operator {
+input TechPost_tags_operator {
   equals: JSON
   not_equals: JSON
   in: [JSON]
@@ -1016,14 +1016,14 @@ input Techpost_tags_operator {
   exists: Boolean
 }
 
-input Techpost_content_operator {
+input TechPost_content_operator {
   equals: JSON
   not_equals: JSON
   like: JSON
   contains: JSON
 }
 
-input Techpost_accordions__accordionheader_operator {
+input TechPost_accordions__accordionheader_operator {
   equals: String
   not_equals: String
   like: String
@@ -1033,7 +1033,7 @@ input Techpost_accordions__accordionheader_operator {
   all: [String]
 }
 
-input Techpost_accordions__accordionItems__accordionitemheader_operator {
+input TechPost_accordions__accordionItems__accordionitemheader_operator {
   equals: String
   not_equals: String
   like: String
@@ -1044,14 +1044,14 @@ input Techpost_accordions__accordionItems__accordionitemheader_operator {
   exists: Boolean
 }
 
-input Techpost_accordions__accordionItems__accordionitemcontent_operator {
+input TechPost_accordions__accordionItems__accordionitemcontent_operator {
   equals: JSON
   not_equals: JSON
   like: JSON
   contains: JSON
 }
 
-input Techpost_accordions__accordionItems__id_operator {
+input TechPost_accordions__accordionItems__id_operator {
   equals: String
   not_equals: String
   like: String
@@ -1062,7 +1062,7 @@ input Techpost_accordions__accordionItems__id_operator {
   exists: Boolean
 }
 
-input Techpost_accordions__id_operator {
+input TechPost_accordions__id_operator {
   equals: String
   not_equals: String
   like: String
@@ -1073,20 +1073,20 @@ input Techpost_accordions__id_operator {
   exists: Boolean
 }
 
-input Techpost_status_operator {
-  equals: Techpost_status_Input
-  not_equals: Techpost_status_Input
-  in: [Techpost_status_Input]
-  not_in: [Techpost_status_Input]
-  all: [Techpost_status_Input]
+input TechPost_status_operator {
+  equals: TechPost_status_Input
+  not_equals: TechPost_status_Input
+  in: [TechPost_status_Input]
+  not_in: [TechPost_status_Input]
+  all: [TechPost_status_Input]
 }
 
-enum Techpost_status_Input {
+enum TechPost_status_Input {
   draft
   published
 }
 
-input Techpost_updatedAt_operator {
+input TechPost_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
   greater_than_equal: DateTime
@@ -1097,7 +1097,7 @@ input Techpost_updatedAt_operator {
   exists: Boolean
 }
 
-input Techpost_createdAt_operator {
+input TechPost_createdAt_operator {
   equals: DateTime
   not_equals: DateTime
   greater_than_equal: DateTime
@@ -1108,7 +1108,7 @@ input Techpost_createdAt_operator {
   exists: Boolean
 }
 
-input Techpost_id_operator {
+input TechPost_id_operator {
   equals: String
   not_equals: String
   like: String
@@ -1119,461 +1119,461 @@ input Techpost_id_operator {
   exists: Boolean
 }
 
-input Techpost_where_and {
-  title: Techpost_title_operator
-  slug: Techpost_slug_operator
-  author: Techpost_author_operator
-  publishedDate: Techpost_publishedDate_operator
-  tags: Techpost_tags_operator
-  content: Techpost_content_operator
-  accordions__accordionheader: Techpost_accordions__accordionheader_operator
-  accordions__accordionItems__accordionitemheader: Techpost_accordions__accordionItems__accordionitemheader_operator
-  accordions__accordionItems__accordionitemcontent: Techpost_accordions__accordionItems__accordionitemcontent_operator
-  accordions__accordionItems__id: Techpost_accordions__accordionItems__id_operator
-  accordions__id: Techpost_accordions__id_operator
-  status: Techpost_status_operator
-  updatedAt: Techpost_updatedAt_operator
-  createdAt: Techpost_createdAt_operator
-  id: Techpost_id_operator
+input TechPost_where_and {
+  title: TechPost_title_operator
+  slug: TechPost_slug_operator
+  author: TechPost_author_operator
+  publishedDate: TechPost_publishedDate_operator
+  tags: TechPost_tags_operator
+  content: TechPost_content_operator
+  accordions__accordionheader: TechPost_accordions__accordionheader_operator
+  accordions__accordionItems__accordionitemheader: TechPost_accordions__accordionItems__accordionitemheader_operator
+  accordions__accordionItems__accordionitemcontent: TechPost_accordions__accordionItems__accordionitemcontent_operator
+  accordions__accordionItems__id: TechPost_accordions__accordionItems__id_operator
+  accordions__id: TechPost_accordions__id_operator
+  status: TechPost_status_operator
+  updatedAt: TechPost_updatedAt_operator
+  createdAt: TechPost_createdAt_operator
+  id: TechPost_id_operator
 }
 
-input Techpost_where_or {
-  title: Techpost_title_operator
-  slug: Techpost_slug_operator
-  author: Techpost_author_operator
-  publishedDate: Techpost_publishedDate_operator
-  tags: Techpost_tags_operator
-  content: Techpost_content_operator
-  accordions__accordionheader: Techpost_accordions__accordionheader_operator
-  accordions__accordionItems__accordionitemheader: Techpost_accordions__accordionItems__accordionitemheader_operator
-  accordions__accordionItems__accordionitemcontent: Techpost_accordions__accordionItems__accordionitemcontent_operator
-  accordions__accordionItems__id: Techpost_accordions__accordionItems__id_operator
-  accordions__id: Techpost_accordions__id_operator
-  status: Techpost_status_operator
-  updatedAt: Techpost_updatedAt_operator
-  createdAt: Techpost_createdAt_operator
-  id: Techpost_id_operator
+input TechPost_where_or {
+  title: TechPost_title_operator
+  slug: TechPost_slug_operator
+  author: TechPost_author_operator
+  publishedDate: TechPost_publishedDate_operator
+  tags: TechPost_tags_operator
+  content: TechPost_content_operator
+  accordions__accordionheader: TechPost_accordions__accordionheader_operator
+  accordions__accordionItems__accordionitemheader: TechPost_accordions__accordionItems__accordionitemheader_operator
+  accordions__accordionItems__accordionitemcontent: TechPost_accordions__accordionItems__accordionitemcontent_operator
+  accordions__accordionItems__id: TechPost_accordions__accordionItems__id_operator
+  accordions__id: TechPost_accordions__id_operator
+  status: TechPost_status_operator
+  updatedAt: TechPost_updatedAt_operator
+  createdAt: TechPost_createdAt_operator
+  id: TechPost_id_operator
 }
 
-type techpostsDocAccess {
-  fields: TechpostsDocAccessFields
-  create: TechpostsCreateDocAccess
-  read: TechpostsReadDocAccess
-  update: TechpostsUpdateDocAccess
-  delete: TechpostsDeleteDocAccess
+type tech_postsDocAccess {
+  fields: TechPostsDocAccessFields
+  create: TechPostsCreateDocAccess
+  read: TechPostsReadDocAccess
+  update: TechPostsUpdateDocAccess
+  delete: TechPostsDeleteDocAccess
 }
 
-type TechpostsDocAccessFields {
-  title: TechpostsDocAccessFields_title
-  slug: TechpostsDocAccessFields_slug
-  author: TechpostsDocAccessFields_author
-  publishedDate: TechpostsDocAccessFields_publishedDate
-  tags: TechpostsDocAccessFields_tags
-  content: TechpostsDocAccessFields_content
-  accordions: TechpostsDocAccessFields_accordions
-  status: TechpostsDocAccessFields_status
-  updatedAt: TechpostsDocAccessFields_updatedAt
-  createdAt: TechpostsDocAccessFields_createdAt
+type TechPostsDocAccessFields {
+  title: TechPostsDocAccessFields_title
+  slug: TechPostsDocAccessFields_slug
+  author: TechPostsDocAccessFields_author
+  publishedDate: TechPostsDocAccessFields_publishedDate
+  tags: TechPostsDocAccessFields_tags
+  content: TechPostsDocAccessFields_content
+  accordions: TechPostsDocAccessFields_accordions
+  status: TechPostsDocAccessFields_status
+  updatedAt: TechPostsDocAccessFields_updatedAt
+  createdAt: TechPostsDocAccessFields_createdAt
 }
 
-type TechpostsDocAccessFields_title {
-  create: TechpostsDocAccessFields_title_Create
-  read: TechpostsDocAccessFields_title_Read
-  update: TechpostsDocAccessFields_title_Update
-  delete: TechpostsDocAccessFields_title_Delete
+type TechPostsDocAccessFields_title {
+  create: TechPostsDocAccessFields_title_Create
+  read: TechPostsDocAccessFields_title_Read
+  update: TechPostsDocAccessFields_title_Update
+  delete: TechPostsDocAccessFields_title_Delete
 }
 
-type TechpostsDocAccessFields_title_Create {
+type TechPostsDocAccessFields_title_Create {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_title_Read {
+type TechPostsDocAccessFields_title_Read {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_title_Update {
+type TechPostsDocAccessFields_title_Update {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_title_Delete {
+type TechPostsDocAccessFields_title_Delete {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_slug {
-  create: TechpostsDocAccessFields_slug_Create
-  read: TechpostsDocAccessFields_slug_Read
-  update: TechpostsDocAccessFields_slug_Update
-  delete: TechpostsDocAccessFields_slug_Delete
+type TechPostsDocAccessFields_slug {
+  create: TechPostsDocAccessFields_slug_Create
+  read: TechPostsDocAccessFields_slug_Read
+  update: TechPostsDocAccessFields_slug_Update
+  delete: TechPostsDocAccessFields_slug_Delete
 }
 
-type TechpostsDocAccessFields_slug_Create {
+type TechPostsDocAccessFields_slug_Create {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_slug_Read {
+type TechPostsDocAccessFields_slug_Read {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_slug_Update {
+type TechPostsDocAccessFields_slug_Update {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_slug_Delete {
+type TechPostsDocAccessFields_slug_Delete {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_author {
-  create: TechpostsDocAccessFields_author_Create
-  read: TechpostsDocAccessFields_author_Read
-  update: TechpostsDocAccessFields_author_Update
-  delete: TechpostsDocAccessFields_author_Delete
+type TechPostsDocAccessFields_author {
+  create: TechPostsDocAccessFields_author_Create
+  read: TechPostsDocAccessFields_author_Read
+  update: TechPostsDocAccessFields_author_Update
+  delete: TechPostsDocAccessFields_author_Delete
 }
 
-type TechpostsDocAccessFields_author_Create {
+type TechPostsDocAccessFields_author_Create {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_author_Read {
+type TechPostsDocAccessFields_author_Read {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_author_Update {
+type TechPostsDocAccessFields_author_Update {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_author_Delete {
+type TechPostsDocAccessFields_author_Delete {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_publishedDate {
-  create: TechpostsDocAccessFields_publishedDate_Create
-  read: TechpostsDocAccessFields_publishedDate_Read
-  update: TechpostsDocAccessFields_publishedDate_Update
-  delete: TechpostsDocAccessFields_publishedDate_Delete
+type TechPostsDocAccessFields_publishedDate {
+  create: TechPostsDocAccessFields_publishedDate_Create
+  read: TechPostsDocAccessFields_publishedDate_Read
+  update: TechPostsDocAccessFields_publishedDate_Update
+  delete: TechPostsDocAccessFields_publishedDate_Delete
 }
 
-type TechpostsDocAccessFields_publishedDate_Create {
+type TechPostsDocAccessFields_publishedDate_Create {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_publishedDate_Read {
+type TechPostsDocAccessFields_publishedDate_Read {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_publishedDate_Update {
+type TechPostsDocAccessFields_publishedDate_Update {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_publishedDate_Delete {
+type TechPostsDocAccessFields_publishedDate_Delete {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_tags {
-  create: TechpostsDocAccessFields_tags_Create
-  read: TechpostsDocAccessFields_tags_Read
-  update: TechpostsDocAccessFields_tags_Update
-  delete: TechpostsDocAccessFields_tags_Delete
+type TechPostsDocAccessFields_tags {
+  create: TechPostsDocAccessFields_tags_Create
+  read: TechPostsDocAccessFields_tags_Read
+  update: TechPostsDocAccessFields_tags_Update
+  delete: TechPostsDocAccessFields_tags_Delete
 }
 
-type TechpostsDocAccessFields_tags_Create {
+type TechPostsDocAccessFields_tags_Create {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_tags_Read {
+type TechPostsDocAccessFields_tags_Read {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_tags_Update {
+type TechPostsDocAccessFields_tags_Update {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_tags_Delete {
+type TechPostsDocAccessFields_tags_Delete {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_content {
-  create: TechpostsDocAccessFields_content_Create
-  read: TechpostsDocAccessFields_content_Read
-  update: TechpostsDocAccessFields_content_Update
-  delete: TechpostsDocAccessFields_content_Delete
+type TechPostsDocAccessFields_content {
+  create: TechPostsDocAccessFields_content_Create
+  read: TechPostsDocAccessFields_content_Read
+  update: TechPostsDocAccessFields_content_Update
+  delete: TechPostsDocAccessFields_content_Delete
 }
 
-type TechpostsDocAccessFields_content_Create {
+type TechPostsDocAccessFields_content_Create {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_content_Read {
+type TechPostsDocAccessFields_content_Read {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_content_Update {
+type TechPostsDocAccessFields_content_Update {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_content_Delete {
+type TechPostsDocAccessFields_content_Delete {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions {
-  create: TechpostsDocAccessFields_accordions_Create
-  read: TechpostsDocAccessFields_accordions_Read
-  update: TechpostsDocAccessFields_accordions_Update
-  delete: TechpostsDocAccessFields_accordions_Delete
-  fields: TechpostsDocAccessFields_accordions_Fields
+type TechPostsDocAccessFields_accordions {
+  create: TechPostsDocAccessFields_accordions_Create
+  read: TechPostsDocAccessFields_accordions_Read
+  update: TechPostsDocAccessFields_accordions_Update
+  delete: TechPostsDocAccessFields_accordions_Delete
+  fields: TechPostsDocAccessFields_accordions_Fields
 }
 
-type TechpostsDocAccessFields_accordions_Create {
+type TechPostsDocAccessFields_accordions_Create {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions_Read {
+type TechPostsDocAccessFields_accordions_Read {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions_Update {
+type TechPostsDocAccessFields_accordions_Update {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions_Delete {
+type TechPostsDocAccessFields_accordions_Delete {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions_Fields {
-  accordionheader: TechpostsDocAccessFields_accordions_accordionheader
-  accordionItems: TechpostsDocAccessFields_accordions_accordionItems
-  id: TechpostsDocAccessFields_accordions_id
+type TechPostsDocAccessFields_accordions_Fields {
+  accordionheader: TechPostsDocAccessFields_accordions_accordionheader
+  accordionItems: TechPostsDocAccessFields_accordions_accordionItems
+  id: TechPostsDocAccessFields_accordions_id
 }
 
-type TechpostsDocAccessFields_accordions_accordionheader {
-  create: TechpostsDocAccessFields_accordions_accordionheader_Create
-  read: TechpostsDocAccessFields_accordions_accordionheader_Read
-  update: TechpostsDocAccessFields_accordions_accordionheader_Update
-  delete: TechpostsDocAccessFields_accordions_accordionheader_Delete
+type TechPostsDocAccessFields_accordions_accordionheader {
+  create: TechPostsDocAccessFields_accordions_accordionheader_Create
+  read: TechPostsDocAccessFields_accordions_accordionheader_Read
+  update: TechPostsDocAccessFields_accordions_accordionheader_Update
+  delete: TechPostsDocAccessFields_accordions_accordionheader_Delete
 }
 
-type TechpostsDocAccessFields_accordions_accordionheader_Create {
+type TechPostsDocAccessFields_accordions_accordionheader_Create {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions_accordionheader_Read {
+type TechPostsDocAccessFields_accordions_accordionheader_Read {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions_accordionheader_Update {
+type TechPostsDocAccessFields_accordions_accordionheader_Update {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions_accordionheader_Delete {
+type TechPostsDocAccessFields_accordions_accordionheader_Delete {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions_accordionItems {
-  create: TechpostsDocAccessFields_accordions_accordionItems_Create
-  read: TechpostsDocAccessFields_accordions_accordionItems_Read
-  update: TechpostsDocAccessFields_accordions_accordionItems_Update
-  delete: TechpostsDocAccessFields_accordions_accordionItems_Delete
-  fields: TechpostsDocAccessFields_accordions_accordionItems_Fields
+type TechPostsDocAccessFields_accordions_accordionItems {
+  create: TechPostsDocAccessFields_accordions_accordionItems_Create
+  read: TechPostsDocAccessFields_accordions_accordionItems_Read
+  update: TechPostsDocAccessFields_accordions_accordionItems_Update
+  delete: TechPostsDocAccessFields_accordions_accordionItems_Delete
+  fields: TechPostsDocAccessFields_accordions_accordionItems_Fields
 }
 
-type TechpostsDocAccessFields_accordions_accordionItems_Create {
+type TechPostsDocAccessFields_accordions_accordionItems_Create {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions_accordionItems_Read {
+type TechPostsDocAccessFields_accordions_accordionItems_Read {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions_accordionItems_Update {
+type TechPostsDocAccessFields_accordions_accordionItems_Update {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions_accordionItems_Delete {
+type TechPostsDocAccessFields_accordions_accordionItems_Delete {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions_accordionItems_Fields {
-  accordionitemheader: TechpostsDocAccessFields_accordions_accordionItems_accordionitemheader
-  accordionitemcontent: TechpostsDocAccessFields_accordions_accordionItems_accordionitemcontent
-  id: TechpostsDocAccessFields_accordions_accordionItems_id
+type TechPostsDocAccessFields_accordions_accordionItems_Fields {
+  accordionitemheader: TechPostsDocAccessFields_accordions_accordionItems_accordionitemheader
+  accordionitemcontent: TechPostsDocAccessFields_accordions_accordionItems_accordionitemcontent
+  id: TechPostsDocAccessFields_accordions_accordionItems_id
 }
 
-type TechpostsDocAccessFields_accordions_accordionItems_accordionitemheader {
-  create: TechpostsDocAccessFields_accordions_accordionItems_accordionitemheader_Create
-  read: TechpostsDocAccessFields_accordions_accordionItems_accordionitemheader_Read
-  update: TechpostsDocAccessFields_accordions_accordionItems_accordionitemheader_Update
-  delete: TechpostsDocAccessFields_accordions_accordionItems_accordionitemheader_Delete
+type TechPostsDocAccessFields_accordions_accordionItems_accordionitemheader {
+  create: TechPostsDocAccessFields_accordions_accordionItems_accordionitemheader_Create
+  read: TechPostsDocAccessFields_accordions_accordionItems_accordionitemheader_Read
+  update: TechPostsDocAccessFields_accordions_accordionItems_accordionitemheader_Update
+  delete: TechPostsDocAccessFields_accordions_accordionItems_accordionitemheader_Delete
 }
 
-type TechpostsDocAccessFields_accordions_accordionItems_accordionitemheader_Create {
+type TechPostsDocAccessFields_accordions_accordionItems_accordionitemheader_Create {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions_accordionItems_accordionitemheader_Read {
+type TechPostsDocAccessFields_accordions_accordionItems_accordionitemheader_Read {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions_accordionItems_accordionitemheader_Update {
+type TechPostsDocAccessFields_accordions_accordionItems_accordionitemheader_Update {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions_accordionItems_accordionitemheader_Delete {
+type TechPostsDocAccessFields_accordions_accordionItems_accordionitemheader_Delete {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions_accordionItems_accordionitemcontent {
-  create: TechpostsDocAccessFields_accordions_accordionItems_accordionitemcontent_Create
-  read: TechpostsDocAccessFields_accordions_accordionItems_accordionitemcontent_Read
-  update: TechpostsDocAccessFields_accordions_accordionItems_accordionitemcontent_Update
-  delete: TechpostsDocAccessFields_accordions_accordionItems_accordionitemcontent_Delete
+type TechPostsDocAccessFields_accordions_accordionItems_accordionitemcontent {
+  create: TechPostsDocAccessFields_accordions_accordionItems_accordionitemcontent_Create
+  read: TechPostsDocAccessFields_accordions_accordionItems_accordionitemcontent_Read
+  update: TechPostsDocAccessFields_accordions_accordionItems_accordionitemcontent_Update
+  delete: TechPostsDocAccessFields_accordions_accordionItems_accordionitemcontent_Delete
 }
 
-type TechpostsDocAccessFields_accordions_accordionItems_accordionitemcontent_Create {
+type TechPostsDocAccessFields_accordions_accordionItems_accordionitemcontent_Create {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions_accordionItems_accordionitemcontent_Read {
+type TechPostsDocAccessFields_accordions_accordionItems_accordionitemcontent_Read {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions_accordionItems_accordionitemcontent_Update {
+type TechPostsDocAccessFields_accordions_accordionItems_accordionitemcontent_Update {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions_accordionItems_accordionitemcontent_Delete {
+type TechPostsDocAccessFields_accordions_accordionItems_accordionitemcontent_Delete {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions_accordionItems_id {
-  create: TechpostsDocAccessFields_accordions_accordionItems_id_Create
-  read: TechpostsDocAccessFields_accordions_accordionItems_id_Read
-  update: TechpostsDocAccessFields_accordions_accordionItems_id_Update
-  delete: TechpostsDocAccessFields_accordions_accordionItems_id_Delete
+type TechPostsDocAccessFields_accordions_accordionItems_id {
+  create: TechPostsDocAccessFields_accordions_accordionItems_id_Create
+  read: TechPostsDocAccessFields_accordions_accordionItems_id_Read
+  update: TechPostsDocAccessFields_accordions_accordionItems_id_Update
+  delete: TechPostsDocAccessFields_accordions_accordionItems_id_Delete
 }
 
-type TechpostsDocAccessFields_accordions_accordionItems_id_Create {
+type TechPostsDocAccessFields_accordions_accordionItems_id_Create {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions_accordionItems_id_Read {
+type TechPostsDocAccessFields_accordions_accordionItems_id_Read {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions_accordionItems_id_Update {
+type TechPostsDocAccessFields_accordions_accordionItems_id_Update {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions_accordionItems_id_Delete {
+type TechPostsDocAccessFields_accordions_accordionItems_id_Delete {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions_id {
-  create: TechpostsDocAccessFields_accordions_id_Create
-  read: TechpostsDocAccessFields_accordions_id_Read
-  update: TechpostsDocAccessFields_accordions_id_Update
-  delete: TechpostsDocAccessFields_accordions_id_Delete
+type TechPostsDocAccessFields_accordions_id {
+  create: TechPostsDocAccessFields_accordions_id_Create
+  read: TechPostsDocAccessFields_accordions_id_Read
+  update: TechPostsDocAccessFields_accordions_id_Update
+  delete: TechPostsDocAccessFields_accordions_id_Delete
 }
 
-type TechpostsDocAccessFields_accordions_id_Create {
+type TechPostsDocAccessFields_accordions_id_Create {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions_id_Read {
+type TechPostsDocAccessFields_accordions_id_Read {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions_id_Update {
+type TechPostsDocAccessFields_accordions_id_Update {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_accordions_id_Delete {
+type TechPostsDocAccessFields_accordions_id_Delete {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_status {
-  create: TechpostsDocAccessFields_status_Create
-  read: TechpostsDocAccessFields_status_Read
-  update: TechpostsDocAccessFields_status_Update
-  delete: TechpostsDocAccessFields_status_Delete
+type TechPostsDocAccessFields_status {
+  create: TechPostsDocAccessFields_status_Create
+  read: TechPostsDocAccessFields_status_Read
+  update: TechPostsDocAccessFields_status_Update
+  delete: TechPostsDocAccessFields_status_Delete
 }
 
-type TechpostsDocAccessFields_status_Create {
+type TechPostsDocAccessFields_status_Create {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_status_Read {
+type TechPostsDocAccessFields_status_Read {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_status_Update {
+type TechPostsDocAccessFields_status_Update {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_status_Delete {
+type TechPostsDocAccessFields_status_Delete {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_updatedAt {
-  create: TechpostsDocAccessFields_updatedAt_Create
-  read: TechpostsDocAccessFields_updatedAt_Read
-  update: TechpostsDocAccessFields_updatedAt_Update
-  delete: TechpostsDocAccessFields_updatedAt_Delete
+type TechPostsDocAccessFields_updatedAt {
+  create: TechPostsDocAccessFields_updatedAt_Create
+  read: TechPostsDocAccessFields_updatedAt_Read
+  update: TechPostsDocAccessFields_updatedAt_Update
+  delete: TechPostsDocAccessFields_updatedAt_Delete
 }
 
-type TechpostsDocAccessFields_updatedAt_Create {
+type TechPostsDocAccessFields_updatedAt_Create {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_updatedAt_Read {
+type TechPostsDocAccessFields_updatedAt_Read {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_updatedAt_Update {
+type TechPostsDocAccessFields_updatedAt_Update {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_updatedAt_Delete {
+type TechPostsDocAccessFields_updatedAt_Delete {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_createdAt {
-  create: TechpostsDocAccessFields_createdAt_Create
-  read: TechpostsDocAccessFields_createdAt_Read
-  update: TechpostsDocAccessFields_createdAt_Update
-  delete: TechpostsDocAccessFields_createdAt_Delete
+type TechPostsDocAccessFields_createdAt {
+  create: TechPostsDocAccessFields_createdAt_Create
+  read: TechPostsDocAccessFields_createdAt_Read
+  update: TechPostsDocAccessFields_createdAt_Update
+  delete: TechPostsDocAccessFields_createdAt_Delete
 }
 
-type TechpostsDocAccessFields_createdAt_Create {
+type TechPostsDocAccessFields_createdAt_Create {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_createdAt_Read {
+type TechPostsDocAccessFields_createdAt_Read {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_createdAt_Update {
+type TechPostsDocAccessFields_createdAt_Update {
   permission: Boolean!
 }
 
-type TechpostsDocAccessFields_createdAt_Delete {
+type TechPostsDocAccessFields_createdAt_Delete {
   permission: Boolean!
 }
 
-type TechpostsCreateDocAccess {
+type TechPostsCreateDocAccess {
   permission: Boolean!
   where: JSONObject
 }
 
-type TechpostsReadDocAccess {
+type TechPostsReadDocAccess {
   permission: Boolean!
   where: JSONObject
 }
 
-type TechpostsUpdateDocAccess {
+type TechPostsUpdateDocAccess {
   permission: Boolean!
   where: JSONObject
 }
 
-type TechpostsDeleteDocAccess {
+type TechPostsDeleteDocAccess {
   permission: Boolean!
   where: JSONObject
 }
@@ -3504,7 +3504,7 @@ type Access {
   canAccessAdmin: Boolean!
   icon: iconAccess
   posts: postsAccess
-  techposts: techpostsAccess
+  tech_posts: tech_postsAccess
   tags: tagsAccess
   topics: topicsAccess
   users: usersAccess
@@ -4014,425 +4014,425 @@ type PostsDeleteAccess {
   where: JSONObject
 }
 
-type techpostsAccess {
-  fields: TechpostsFields
-  create: TechpostsCreateAccess
-  read: TechpostsReadAccess
-  update: TechpostsUpdateAccess
-  delete: TechpostsDeleteAccess
+type tech_postsAccess {
+  fields: TechPostsFields
+  create: TechPostsCreateAccess
+  read: TechPostsReadAccess
+  update: TechPostsUpdateAccess
+  delete: TechPostsDeleteAccess
 }
 
-type TechpostsFields {
-  title: TechpostsFields_title
-  slug: TechpostsFields_slug
-  author: TechpostsFields_author
-  publishedDate: TechpostsFields_publishedDate
-  tags: TechpostsFields_tags
-  content: TechpostsFields_content
-  accordions: TechpostsFields_accordions
-  status: TechpostsFields_status
-  updatedAt: TechpostsFields_updatedAt
-  createdAt: TechpostsFields_createdAt
+type TechPostsFields {
+  title: TechPostsFields_title
+  slug: TechPostsFields_slug
+  author: TechPostsFields_author
+  publishedDate: TechPostsFields_publishedDate
+  tags: TechPostsFields_tags
+  content: TechPostsFields_content
+  accordions: TechPostsFields_accordions
+  status: TechPostsFields_status
+  updatedAt: TechPostsFields_updatedAt
+  createdAt: TechPostsFields_createdAt
 }
 
-type TechpostsFields_title {
-  create: TechpostsFields_title_Create
-  read: TechpostsFields_title_Read
-  update: TechpostsFields_title_Update
-  delete: TechpostsFields_title_Delete
+type TechPostsFields_title {
+  create: TechPostsFields_title_Create
+  read: TechPostsFields_title_Read
+  update: TechPostsFields_title_Update
+  delete: TechPostsFields_title_Delete
 }
 
-type TechpostsFields_title_Create {
+type TechPostsFields_title_Create {
   permission: Boolean!
 }
 
-type TechpostsFields_title_Read {
+type TechPostsFields_title_Read {
   permission: Boolean!
 }
 
-type TechpostsFields_title_Update {
+type TechPostsFields_title_Update {
   permission: Boolean!
 }
 
-type TechpostsFields_title_Delete {
+type TechPostsFields_title_Delete {
   permission: Boolean!
 }
 
-type TechpostsFields_slug {
-  create: TechpostsFields_slug_Create
-  read: TechpostsFields_slug_Read
-  update: TechpostsFields_slug_Update
-  delete: TechpostsFields_slug_Delete
+type TechPostsFields_slug {
+  create: TechPostsFields_slug_Create
+  read: TechPostsFields_slug_Read
+  update: TechPostsFields_slug_Update
+  delete: TechPostsFields_slug_Delete
 }
 
-type TechpostsFields_slug_Create {
+type TechPostsFields_slug_Create {
   permission: Boolean!
 }
 
-type TechpostsFields_slug_Read {
+type TechPostsFields_slug_Read {
   permission: Boolean!
 }
 
-type TechpostsFields_slug_Update {
+type TechPostsFields_slug_Update {
   permission: Boolean!
 }
 
-type TechpostsFields_slug_Delete {
+type TechPostsFields_slug_Delete {
   permission: Boolean!
 }
 
-type TechpostsFields_author {
-  create: TechpostsFields_author_Create
-  read: TechpostsFields_author_Read
-  update: TechpostsFields_author_Update
-  delete: TechpostsFields_author_Delete
+type TechPostsFields_author {
+  create: TechPostsFields_author_Create
+  read: TechPostsFields_author_Read
+  update: TechPostsFields_author_Update
+  delete: TechPostsFields_author_Delete
 }
 
-type TechpostsFields_author_Create {
+type TechPostsFields_author_Create {
   permission: Boolean!
 }
 
-type TechpostsFields_author_Read {
+type TechPostsFields_author_Read {
   permission: Boolean!
 }
 
-type TechpostsFields_author_Update {
+type TechPostsFields_author_Update {
   permission: Boolean!
 }
 
-type TechpostsFields_author_Delete {
+type TechPostsFields_author_Delete {
   permission: Boolean!
 }
 
-type TechpostsFields_publishedDate {
-  create: TechpostsFields_publishedDate_Create
-  read: TechpostsFields_publishedDate_Read
-  update: TechpostsFields_publishedDate_Update
-  delete: TechpostsFields_publishedDate_Delete
+type TechPostsFields_publishedDate {
+  create: TechPostsFields_publishedDate_Create
+  read: TechPostsFields_publishedDate_Read
+  update: TechPostsFields_publishedDate_Update
+  delete: TechPostsFields_publishedDate_Delete
 }
 
-type TechpostsFields_publishedDate_Create {
+type TechPostsFields_publishedDate_Create {
   permission: Boolean!
 }
 
-type TechpostsFields_publishedDate_Read {
+type TechPostsFields_publishedDate_Read {
   permission: Boolean!
 }
 
-type TechpostsFields_publishedDate_Update {
+type TechPostsFields_publishedDate_Update {
   permission: Boolean!
 }
 
-type TechpostsFields_publishedDate_Delete {
+type TechPostsFields_publishedDate_Delete {
   permission: Boolean!
 }
 
-type TechpostsFields_tags {
-  create: TechpostsFields_tags_Create
-  read: TechpostsFields_tags_Read
-  update: TechpostsFields_tags_Update
-  delete: TechpostsFields_tags_Delete
+type TechPostsFields_tags {
+  create: TechPostsFields_tags_Create
+  read: TechPostsFields_tags_Read
+  update: TechPostsFields_tags_Update
+  delete: TechPostsFields_tags_Delete
 }
 
-type TechpostsFields_tags_Create {
+type TechPostsFields_tags_Create {
   permission: Boolean!
 }
 
-type TechpostsFields_tags_Read {
+type TechPostsFields_tags_Read {
   permission: Boolean!
 }
 
-type TechpostsFields_tags_Update {
+type TechPostsFields_tags_Update {
   permission: Boolean!
 }
 
-type TechpostsFields_tags_Delete {
+type TechPostsFields_tags_Delete {
   permission: Boolean!
 }
 
-type TechpostsFields_content {
-  create: TechpostsFields_content_Create
-  read: TechpostsFields_content_Read
-  update: TechpostsFields_content_Update
-  delete: TechpostsFields_content_Delete
+type TechPostsFields_content {
+  create: TechPostsFields_content_Create
+  read: TechPostsFields_content_Read
+  update: TechPostsFields_content_Update
+  delete: TechPostsFields_content_Delete
 }
 
-type TechpostsFields_content_Create {
+type TechPostsFields_content_Create {
   permission: Boolean!
 }
 
-type TechpostsFields_content_Read {
+type TechPostsFields_content_Read {
   permission: Boolean!
 }
 
-type TechpostsFields_content_Update {
+type TechPostsFields_content_Update {
   permission: Boolean!
 }
 
-type TechpostsFields_content_Delete {
+type TechPostsFields_content_Delete {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions {
-  create: TechpostsFields_accordions_Create
-  read: TechpostsFields_accordions_Read
-  update: TechpostsFields_accordions_Update
-  delete: TechpostsFields_accordions_Delete
-  fields: TechpostsFields_accordions_Fields
+type TechPostsFields_accordions {
+  create: TechPostsFields_accordions_Create
+  read: TechPostsFields_accordions_Read
+  update: TechPostsFields_accordions_Update
+  delete: TechPostsFields_accordions_Delete
+  fields: TechPostsFields_accordions_Fields
 }
 
-type TechpostsFields_accordions_Create {
+type TechPostsFields_accordions_Create {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions_Read {
+type TechPostsFields_accordions_Read {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions_Update {
+type TechPostsFields_accordions_Update {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions_Delete {
+type TechPostsFields_accordions_Delete {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions_Fields {
-  accordionheader: TechpostsFields_accordions_accordionheader
-  accordionItems: TechpostsFields_accordions_accordionItems
-  id: TechpostsFields_accordions_id
+type TechPostsFields_accordions_Fields {
+  accordionheader: TechPostsFields_accordions_accordionheader
+  accordionItems: TechPostsFields_accordions_accordionItems
+  id: TechPostsFields_accordions_id
 }
 
-type TechpostsFields_accordions_accordionheader {
-  create: TechpostsFields_accordions_accordionheader_Create
-  read: TechpostsFields_accordions_accordionheader_Read
-  update: TechpostsFields_accordions_accordionheader_Update
-  delete: TechpostsFields_accordions_accordionheader_Delete
+type TechPostsFields_accordions_accordionheader {
+  create: TechPostsFields_accordions_accordionheader_Create
+  read: TechPostsFields_accordions_accordionheader_Read
+  update: TechPostsFields_accordions_accordionheader_Update
+  delete: TechPostsFields_accordions_accordionheader_Delete
 }
 
-type TechpostsFields_accordions_accordionheader_Create {
+type TechPostsFields_accordions_accordionheader_Create {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions_accordionheader_Read {
+type TechPostsFields_accordions_accordionheader_Read {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions_accordionheader_Update {
+type TechPostsFields_accordions_accordionheader_Update {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions_accordionheader_Delete {
+type TechPostsFields_accordions_accordionheader_Delete {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions_accordionItems {
-  create: TechpostsFields_accordions_accordionItems_Create
-  read: TechpostsFields_accordions_accordionItems_Read
-  update: TechpostsFields_accordions_accordionItems_Update
-  delete: TechpostsFields_accordions_accordionItems_Delete
-  fields: TechpostsFields_accordions_accordionItems_Fields
+type TechPostsFields_accordions_accordionItems {
+  create: TechPostsFields_accordions_accordionItems_Create
+  read: TechPostsFields_accordions_accordionItems_Read
+  update: TechPostsFields_accordions_accordionItems_Update
+  delete: TechPostsFields_accordions_accordionItems_Delete
+  fields: TechPostsFields_accordions_accordionItems_Fields
 }
 
-type TechpostsFields_accordions_accordionItems_Create {
+type TechPostsFields_accordions_accordionItems_Create {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions_accordionItems_Read {
+type TechPostsFields_accordions_accordionItems_Read {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions_accordionItems_Update {
+type TechPostsFields_accordions_accordionItems_Update {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions_accordionItems_Delete {
+type TechPostsFields_accordions_accordionItems_Delete {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions_accordionItems_Fields {
-  accordionitemheader: TechpostsFields_accordions_accordionItems_accordionitemheader
-  accordionitemcontent: TechpostsFields_accordions_accordionItems_accordionitemcontent
-  id: TechpostsFields_accordions_accordionItems_id
+type TechPostsFields_accordions_accordionItems_Fields {
+  accordionitemheader: TechPostsFields_accordions_accordionItems_accordionitemheader
+  accordionitemcontent: TechPostsFields_accordions_accordionItems_accordionitemcontent
+  id: TechPostsFields_accordions_accordionItems_id
 }
 
-type TechpostsFields_accordions_accordionItems_accordionitemheader {
-  create: TechpostsFields_accordions_accordionItems_accordionitemheader_Create
-  read: TechpostsFields_accordions_accordionItems_accordionitemheader_Read
-  update: TechpostsFields_accordions_accordionItems_accordionitemheader_Update
-  delete: TechpostsFields_accordions_accordionItems_accordionitemheader_Delete
+type TechPostsFields_accordions_accordionItems_accordionitemheader {
+  create: TechPostsFields_accordions_accordionItems_accordionitemheader_Create
+  read: TechPostsFields_accordions_accordionItems_accordionitemheader_Read
+  update: TechPostsFields_accordions_accordionItems_accordionitemheader_Update
+  delete: TechPostsFields_accordions_accordionItems_accordionitemheader_Delete
 }
 
-type TechpostsFields_accordions_accordionItems_accordionitemheader_Create {
+type TechPostsFields_accordions_accordionItems_accordionitemheader_Create {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions_accordionItems_accordionitemheader_Read {
+type TechPostsFields_accordions_accordionItems_accordionitemheader_Read {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions_accordionItems_accordionitemheader_Update {
+type TechPostsFields_accordions_accordionItems_accordionitemheader_Update {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions_accordionItems_accordionitemheader_Delete {
+type TechPostsFields_accordions_accordionItems_accordionitemheader_Delete {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions_accordionItems_accordionitemcontent {
-  create: TechpostsFields_accordions_accordionItems_accordionitemcontent_Create
-  read: TechpostsFields_accordions_accordionItems_accordionitemcontent_Read
-  update: TechpostsFields_accordions_accordionItems_accordionitemcontent_Update
-  delete: TechpostsFields_accordions_accordionItems_accordionitemcontent_Delete
+type TechPostsFields_accordions_accordionItems_accordionitemcontent {
+  create: TechPostsFields_accordions_accordionItems_accordionitemcontent_Create
+  read: TechPostsFields_accordions_accordionItems_accordionitemcontent_Read
+  update: TechPostsFields_accordions_accordionItems_accordionitemcontent_Update
+  delete: TechPostsFields_accordions_accordionItems_accordionitemcontent_Delete
 }
 
-type TechpostsFields_accordions_accordionItems_accordionitemcontent_Create {
+type TechPostsFields_accordions_accordionItems_accordionitemcontent_Create {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions_accordionItems_accordionitemcontent_Read {
+type TechPostsFields_accordions_accordionItems_accordionitemcontent_Read {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions_accordionItems_accordionitemcontent_Update {
+type TechPostsFields_accordions_accordionItems_accordionitemcontent_Update {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions_accordionItems_accordionitemcontent_Delete {
+type TechPostsFields_accordions_accordionItems_accordionitemcontent_Delete {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions_accordionItems_id {
-  create: TechpostsFields_accordions_accordionItems_id_Create
-  read: TechpostsFields_accordions_accordionItems_id_Read
-  update: TechpostsFields_accordions_accordionItems_id_Update
-  delete: TechpostsFields_accordions_accordionItems_id_Delete
+type TechPostsFields_accordions_accordionItems_id {
+  create: TechPostsFields_accordions_accordionItems_id_Create
+  read: TechPostsFields_accordions_accordionItems_id_Read
+  update: TechPostsFields_accordions_accordionItems_id_Update
+  delete: TechPostsFields_accordions_accordionItems_id_Delete
 }
 
-type TechpostsFields_accordions_accordionItems_id_Create {
+type TechPostsFields_accordions_accordionItems_id_Create {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions_accordionItems_id_Read {
+type TechPostsFields_accordions_accordionItems_id_Read {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions_accordionItems_id_Update {
+type TechPostsFields_accordions_accordionItems_id_Update {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions_accordionItems_id_Delete {
+type TechPostsFields_accordions_accordionItems_id_Delete {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions_id {
-  create: TechpostsFields_accordions_id_Create
-  read: TechpostsFields_accordions_id_Read
-  update: TechpostsFields_accordions_id_Update
-  delete: TechpostsFields_accordions_id_Delete
+type TechPostsFields_accordions_id {
+  create: TechPostsFields_accordions_id_Create
+  read: TechPostsFields_accordions_id_Read
+  update: TechPostsFields_accordions_id_Update
+  delete: TechPostsFields_accordions_id_Delete
 }
 
-type TechpostsFields_accordions_id_Create {
+type TechPostsFields_accordions_id_Create {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions_id_Read {
+type TechPostsFields_accordions_id_Read {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions_id_Update {
+type TechPostsFields_accordions_id_Update {
   permission: Boolean!
 }
 
-type TechpostsFields_accordions_id_Delete {
+type TechPostsFields_accordions_id_Delete {
   permission: Boolean!
 }
 
-type TechpostsFields_status {
-  create: TechpostsFields_status_Create
-  read: TechpostsFields_status_Read
-  update: TechpostsFields_status_Update
-  delete: TechpostsFields_status_Delete
+type TechPostsFields_status {
+  create: TechPostsFields_status_Create
+  read: TechPostsFields_status_Read
+  update: TechPostsFields_status_Update
+  delete: TechPostsFields_status_Delete
 }
 
-type TechpostsFields_status_Create {
+type TechPostsFields_status_Create {
   permission: Boolean!
 }
 
-type TechpostsFields_status_Read {
+type TechPostsFields_status_Read {
   permission: Boolean!
 }
 
-type TechpostsFields_status_Update {
+type TechPostsFields_status_Update {
   permission: Boolean!
 }
 
-type TechpostsFields_status_Delete {
+type TechPostsFields_status_Delete {
   permission: Boolean!
 }
 
-type TechpostsFields_updatedAt {
-  create: TechpostsFields_updatedAt_Create
-  read: TechpostsFields_updatedAt_Read
-  update: TechpostsFields_updatedAt_Update
-  delete: TechpostsFields_updatedAt_Delete
+type TechPostsFields_updatedAt {
+  create: TechPostsFields_updatedAt_Create
+  read: TechPostsFields_updatedAt_Read
+  update: TechPostsFields_updatedAt_Update
+  delete: TechPostsFields_updatedAt_Delete
 }
 
-type TechpostsFields_updatedAt_Create {
+type TechPostsFields_updatedAt_Create {
   permission: Boolean!
 }
 
-type TechpostsFields_updatedAt_Read {
+type TechPostsFields_updatedAt_Read {
   permission: Boolean!
 }
 
-type TechpostsFields_updatedAt_Update {
+type TechPostsFields_updatedAt_Update {
   permission: Boolean!
 }
 
-type TechpostsFields_updatedAt_Delete {
+type TechPostsFields_updatedAt_Delete {
   permission: Boolean!
 }
 
-type TechpostsFields_createdAt {
-  create: TechpostsFields_createdAt_Create
-  read: TechpostsFields_createdAt_Read
-  update: TechpostsFields_createdAt_Update
-  delete: TechpostsFields_createdAt_Delete
+type TechPostsFields_createdAt {
+  create: TechPostsFields_createdAt_Create
+  read: TechPostsFields_createdAt_Read
+  update: TechPostsFields_createdAt_Update
+  delete: TechPostsFields_createdAt_Delete
 }
 
-type TechpostsFields_createdAt_Create {
+type TechPostsFields_createdAt_Create {
   permission: Boolean!
 }
 
-type TechpostsFields_createdAt_Read {
+type TechPostsFields_createdAt_Read {
   permission: Boolean!
 }
 
-type TechpostsFields_createdAt_Update {
+type TechPostsFields_createdAt_Update {
   permission: Boolean!
 }
 
-type TechpostsFields_createdAt_Delete {
+type TechPostsFields_createdAt_Delete {
   permission: Boolean!
 }
 
-type TechpostsCreateAccess {
+type TechPostsCreateAccess {
   permission: Boolean!
   where: JSONObject
 }
 
-type TechpostsReadAccess {
+type TechPostsReadAccess {
   permission: Boolean!
   where: JSONObject
 }
 
-type TechpostsUpdateAccess {
+type TechPostsUpdateAccess {
   permission: Boolean!
   where: JSONObject
 }
 
-type TechpostsDeleteAccess {
+type TechPostsDeleteAccess {
   permission: Boolean!
   where: JSONObject
 }
@@ -5605,9 +5605,9 @@ type Mutation {
   createPost(data: mutationPostInput!, draft: Boolean): Post
   updatePost(id: String!, autosave: Boolean, data: mutationPostUpdateInput!, draft: Boolean): Post
   deletePost(id: String!): Post
-  createTechpost(data: mutationTechpostInput!, draft: Boolean): Techpost
-  updateTechpost(id: String!, autosave: Boolean, data: mutationTechpostUpdateInput!, draft: Boolean): Techpost
-  deleteTechpost(id: String!): Techpost
+  createTechPost(data: mutationTechPostInput!, draft: Boolean): TechPost
+  updateTechPost(id: String!, autosave: Boolean, data: mutationTechPostUpdateInput!, draft: Boolean): TechPost
+  deleteTechPost(id: String!): TechPost
   createTag(data: mutationTagInput!, draft: Boolean): Tag
   updateTag(id: String!, autosave: Boolean, data: mutationTagUpdateInput!, draft: Boolean): Tag
   deleteTag(id: String!): Tag
@@ -5702,62 +5702,62 @@ enum PostUpdate_status_MutationInput {
   published
 }
 
-input mutationTechpostInput {
+input mutationTechPostInput {
   title: String!
   slug: String
   author: String
   publishedDate: String
   tags: [String]
   content: JSON!
-  accordions: [mutationTechpost_AccordionsInput]
-  status: Techpost_status_MutationInput!
+  accordions: [mutationTechPost_AccordionsInput]
+  status: TechPost_status_MutationInput!
   updatedAt: String
   createdAt: String
 }
 
-input mutationTechpost_AccordionsInput {
+input mutationTechPost_AccordionsInput {
   accordionheader: String!
-  accordionItems: [mutationTechpost_Accordions_AccordionItemsInput]
+  accordionItems: [mutationTechPost_Accordions_AccordionItemsInput]
   id: String
 }
 
-input mutationTechpost_Accordions_AccordionItemsInput {
+input mutationTechPost_Accordions_AccordionItemsInput {
   accordionitemheader: String
   accordionitemcontent: JSON!
   id: String
 }
 
-enum Techpost_status_MutationInput {
+enum TechPost_status_MutationInput {
   draft
   published
 }
 
-input mutationTechpostUpdateInput {
+input mutationTechPostUpdateInput {
   title: String
   slug: String
   author: String
   publishedDate: String
   tags: [String]
   content: JSON
-  accordions: [mutationTechpostUpdate_AccordionsInput]
-  status: TechpostUpdate_status_MutationInput
+  accordions: [mutationTechPostUpdate_AccordionsInput]
+  status: TechPostUpdate_status_MutationInput
   updatedAt: String
   createdAt: String
 }
 
-input mutationTechpostUpdate_AccordionsInput {
+input mutationTechPostUpdate_AccordionsInput {
   accordionheader: String!
-  accordionItems: [mutationTechpostUpdate_Accordions_AccordionItemsInput]
+  accordionItems: [mutationTechPostUpdate_Accordions_AccordionItemsInput]
   id: String
 }
 
-input mutationTechpostUpdate_Accordions_AccordionItemsInput {
+input mutationTechPostUpdate_Accordions_AccordionItemsInput {
   accordionitemheader: String
   accordionitemcontent: JSON!
   id: String
 }
 
-enum TechpostUpdate_status_MutationInput {
+enum TechPostUpdate_status_MutationInput {
   draft
   published
 }
